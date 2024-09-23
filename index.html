@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piyush's Web 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4a90e2;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .column {
+            width: 45%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #4a90e2;
+        }
+        input[type="password"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357ab8;
+        }
+        .template-list, .uploaded-file {
+            display: none;
+            margin-top: 20px;
+        }
+        .uploaded-file {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Piyush's Web 1</h1>
+<div class="container">
+    <div class="column">
+        <h2>Download File</h2>
+        <form id="downloadForm" onsubmit="return validateDownload()">
+            <input type="password" id="downloadPassword" placeholder="Enter Password" required>
+            <button type="submit">Download</button>
+        </form>
+        <div id="templateList" class="template-list">
+            <h3>Available Templates</h3>
+            <ul>
+                <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+                <li><a href="https://www.google.com/search?q=gmail&rlz=1C1CHBF_enIN1100IN1100&oq=gmail&aqs=chrome..69i57j0i131i433i512j0i433i512l2j0i131i433i512j0i433i512j69i61l2.9975j0j9&sourceid=chrome&ie=UTF-8" target="_blank">Gmail</a></li>
+                <li><a href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="column">
+        <h2>Upload File</h2>
+        <form id="uploadForm" onsubmit="return validateUpload()" method="POST" enctype="multipart/form-data">
+            <input type="password" id="uploadPassword" placeholder="Enter Password" required>
+            <input type="file" id="fileInput" name="file" disabled>
+            <button type="submit">Upload</button>
+        </form>
+        <div id="uploadedFileInfo" class="uploaded-file">
+            No file uploaded yet.
+        </div>
+        <div id="templateListUpload" class="template-list">
+            <h3>Available Templates</h3>
+            <ul>
+                <li><a href="https://www.google.com/search?q=chatgpt&rlz=1C1CHBF_enIN1100IN1100&oq=chat&aqs=chrome.0.69i59j69i57j0i131i433i512i650j0i433i512j69i60l4.1431j0j7&sourceid=chrome&ie=UTF-8" target="_blank">ChatGPT</a></li>
+                <li><a href="https://www.google.com/search?q=google+translate&rlz=1C1CHBF_enIN1100IN1100&oq=google+&aqs=chrome.1.69i57j0i67i131i433i512i650l2j0i67i512i650j0i67i131i433i512i650j69i60l3.3659j0j7&sourceid=chrome&ie=UTF-8" target="_blank">Google Translator</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    const downloadPassword = "Piyush@1";
+    const uploadPassword = "411016@4";
+    let uploadedFileName = ""; // Variable to store the uploaded file name
+
+    function validateDownload() {
+        const password = document.getElementById("downloadPassword").value;
+        if (password === downloadPassword) {
+            document.getElementById("templateList").style.display = "block"; // Show template list
+            return false; // Prevent form submission to stay on the page
+        } else {
+            alert("Incorrect password!");
+            return false; // Prevent form submission
+        }
+    }
+
+    function validateUpload() {
+        const password = document.getElementById("uploadPassword").value;
+        if (password !== uploadPassword) {
+            alert("Incorrect password!");
+            return false; // Prevent form submission
+        }
+
+        // Enable file input
+        document.getElementById('fileInput').disabled = false;
+
+        // Show template list after correct password
+        document.getElementById("templateListUpload").style.display = "block";
+
+        return false; // Prevent form submission (for demo purposes)
+    }
+</script>
+
+</body>
+</html>
